@@ -80,17 +80,16 @@
       true,
       "check-open-brace",
       "check-catch",
-      "check-else",
-      "check-whitespace"
+      "check-else"
     ],
-    "prefer-const": true,
+    "prefer-const": false,
     "quotemark": [
       false,
       "single"
     ],
     "radix": true,
     "semicolon": [
-      true,
+      false,
       "always"
     ],
     "triple-equals": [
