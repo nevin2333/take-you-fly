@@ -27,7 +27,7 @@ export class HeroDetailComponent implements OnInit {
       'search[id]': id
     }
     this.heroService.get_heroes(hero_search).subscribe( data => {
-      this.hero = data.heroes[0]
+      this.hero = data.data.heroes[0]
     })
   }
 

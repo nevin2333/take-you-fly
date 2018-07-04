@@ -11,6 +11,7 @@ import {HttpModule} from "@angular/http";
 import { HeroDetailComponent } from './pages/hero-detail/hero-detail.component';
 import {AppRoutingModule} from "../routes/app-routing.module";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [HeroesService, HttpHelper],
   bootstrap: [AppComponent]
