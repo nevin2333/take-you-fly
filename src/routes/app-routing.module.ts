@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // 首页链接重定向
-  { path: 'detail/:id', component: HeroDetailComponent}
+  { path: 'detail/:id', component: HeroDetailComponent},
+  { path: 'test', loadChildren: '../app/module/shared-material.module#SharedMaterialModule'},
 ]
 
 @NgModule({

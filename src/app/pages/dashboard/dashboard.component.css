@@ -27,6 +27,14 @@ h4 {
 .col-1-4 {
   width: 25%;
 }
+
+.test-a{
+  width: 25%;
+  display: inline-block;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
 .module {
   padding: 20px;
   text-align: center;
@@ -50,7 +58,13 @@ h4 {
 @media (max-width: 600px) {
   .module {
     font-size: 10px;
-    max-height: 75px; }
+    max-height: 75px;
+  }
+  .test-a{
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 @media (max-width: 1024px) {
   .grid {

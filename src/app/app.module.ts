@@ -12,6 +12,8 @@ import { HeroDetailComponent } from './pages/hero-detail/hero-detail.component';
 import {AppRoutingModule} from "../routes/app-routing.module";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TestComponent} from "./pages/test/test.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [HeroesService, HttpHelper],
   bootstrap: [AppComponent]

@@ -10,4 +10,16 @@
 
 <button (click)="goBack()">go back</button>
 
-<button (click)="save()">save</button>
+<button (click)="sad()">save</button>
+
+<ul>
+  <li *ngIf="sa" style="width: 50px;" [@heroState]="state"
+      (click)="toggleState()">
+    <div style="overflow: hidden">{{hero.name}}</div>
+  </li>
+</ul>
+
+<div>
+  {{birthday | date: "MM/dd/yy"}}
+</div>
+
