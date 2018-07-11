@@ -6,6 +6,12 @@ import {TestRoute} from "../../routes/test.route";
 import {TestComponent} from "../pages/test/test.component";
 import {HttpHelper} from "../../helper/http.helper";
 import {DynamicTestComponent} from "../pages/test/dynamic-section/dynamic-test.component";
+import {OverlayModule} from "@angular/cdk/overlay";
+import {
+  MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatNativeDateModule, MatNavList,
+  MatSidenavModule
+} from "@angular/material";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -18,8 +24,16 @@ import {DynamicTestComponent} from "../pages/test/dynamic-section/dynamic-test.c
     HttpModule,
     HttpClientModule,
     TestRoute,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatListModule,
+    CommonModule,
+    OverlayModule,
   ],
   providers: [HttpHelper],
+  exports: [OverlayModule],
 
 })
 export class SharedMaterialModule { }

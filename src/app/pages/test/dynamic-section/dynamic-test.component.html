@@ -1,0 +1,26 @@
+<div class="plus">
+  +
+</div>
+
+<div>
+  <button mat-fab class="float-menu" (click)="displayMenu()" #overlays>
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayPositions]="_positions"
+    [cdkConnectedOverlayOrigin]="overlay"
+    [cdkConnectedOverlayMinWidth]="20"
+    [cdkConnectedOverlayOpen]="is_edit"
+    [cdkConnectedOverlayWidth]="400"
+  >
+    <div class="fab-menu-panel">
+      <mat-nav-list>
+        <a mat-list-item>新增信件</a>
+        <a mat-list-item>管理聯絡人</a>
+      </mat-nav-list>
+    </div>
+  </ng-template>
+</div>
