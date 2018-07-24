@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
@@ -12,13 +12,16 @@ import {
   MatSidenavModule
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
+import {PopupComponent} from "../pages/popup/popup.component";
+import {createCustomElement} from "@angular/elements";
 
 @NgModule({
   declarations: [
     TestComponent,
     DynamicTestComponent,
+    PopupComponent,
   ],
-  entryComponents: [DynamicTestComponent],
+  entryComponents: [DynamicTestComponent, PopupComponent],
   imports: [
     FormsModule,
     HttpModule,
@@ -36,4 +39,9 @@ import {CommonModule} from "@angular/common";
   exports: [OverlayModule],
 
 })
-export class SharedMaterialModule { }
+export class SharedMaterialModule {
+  constructor(private injector: Injector){
+    const customPopup = createCustomElement(PopupComponent, { injector });
+    customElements.define('custom-popup', customPopup);
+  }
+}

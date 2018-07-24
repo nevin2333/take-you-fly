@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Injector, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {AfterViewInit} from "@angular/core";
 import {DynamicTestComponent} from "./dynamic-section/dynamic-test.component";
 
@@ -10,7 +10,8 @@ export class TestComponent implements OnInit {
 
   @ViewChild('dmroom', {read: ViewContainerRef}) dmRoom: ViewContainerRef
 
-  constructor(private cfr: ComponentFactoryResolver) { }
+  constructor(private cfr: ComponentFactoryResolver) {
+  }
 
   ngOnInit() {
 
