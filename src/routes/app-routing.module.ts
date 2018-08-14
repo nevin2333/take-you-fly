@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { HeroesComponent} from "../app/pages/heroes/heroes.component";
 import {DashboardComponent} from "../app/pages/dashboard/dashboard.component";
 import {HeroDetailComponent} from "../app/pages/hero-detail/hero-detail.component";
+import {AnimationComponent} from "../app/pages/animation/animation.component";
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // 首页链接重定向
   { path: 'detail/:id', component: HeroDetailComponent},
   { path: 'test', loadChildren: '../app/module/shared-material.module#SharedMaterialModule'},
+  { path: 'animation', component: AnimationComponent},
 ]
 
 @NgModule({

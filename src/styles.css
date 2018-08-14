@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* line 3, assets/css/sass/_item.scss */
+.item-test {
+  color: blue;
+}
+
+/* line 3, assets/css/sass/styles.scss */
+.test-back-img {
+  margin-top: 200px;
+  width: 1000px;
+  height: 1000px;
+  background-attachment: fixed;
+  background-image: url(http://atyun-api-sit.oss-cn-shanghai.aliyuncs.com/uploads/user_0/content/background/76512/bbdb525f-2e52-4a40-bc6b-66b37396e010.jpg);
+}

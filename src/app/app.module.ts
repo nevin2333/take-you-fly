@@ -13,7 +13,7 @@ import {AppRoutingModule} from "../routes/app-routing.module";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TestComponent} from "./pages/test/test.component";
+import {AnimationComponent} from "./pages/animation/animation.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import {TestComponent} from "./pages/test/test.component";
     HeroesComponent,
     HeroDetailComponent,
     DashboardComponent,
+    AnimationComponent,
   ],
   imports: [
     BrowserModule,
