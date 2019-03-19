@@ -17,6 +17,7 @@
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
+import 'global-shim'
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
 import 'core-js/es6/symbol';
@@ -40,6 +41,7 @@ import 'classlist.js';  // Run `npm install --save classlist.js`.
 /** IE10 and IE11 requires the following for the Reflect API. */
 import 'core-js/es6/reflect';
 
+import 'core-js/es7/array'
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
@@ -88,4 +90,4 @@ import 'intl';  // Run `npm install --save intl`.
  */
 import 'intl/locale-data/jsonp/en';
 
-(window as any).global = window;
+

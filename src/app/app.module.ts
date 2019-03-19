@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AnimationComponent} from "./pages/animation/animation.component";
+import {AtModule} from "at-ng";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {AnimationComponent} from "./pages/animation/animation.component";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AtModule.forRoot()
   ],
   providers: [HeroesService, HttpHelper],
   bootstrap: [AppComponent]

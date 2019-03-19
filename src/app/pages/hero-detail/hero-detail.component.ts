@@ -45,17 +45,20 @@ export class HeroDetailComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
+    console.log(this.hero)
     this.getHero()
   }
 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id')
-    let hero_search = {
-      'search[id]': id
+    if (id){
+      let hero_search = {
+        'search[id]': id
+      }
+      this.heroService.get_heroes(hero_search).subscribe( data => {
+        this.hero = data.data.heroes[0]
+      })
     }
-    this.heroService.get_heroes(hero_search).subscribe( data => {
-      this.hero = data.data.heroes[0]
-    })
   }
 
   goBack(): void {
