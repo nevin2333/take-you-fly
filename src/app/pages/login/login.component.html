@@ -1,0 +1,16 @@
+<div class="login-background">
+
+  <div class="login-content">
+    <img class="login-portrait" src="../../../assets/images/xx.jpeg">
+
+    <input (keyup.enter)="login()" [placeholder]="'用户名'" class="login-input username" [(ngModel)]="username"/>
+
+    <input (keyup.enter)="login()" [placeholder]="'密码'" class="login-input password" type="password" [(ngModel)]="password"/>
+
+    <div class="login-button">
+      <button (click)="login()">登录</button>
+    </div>
+
+  </div>
+
+</div>

@@ -3,26 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './pages/heroes/heroes.component';
 import {FormsModule} from "@angular/forms";
-import {HeroesService} from "./services/heroes/heroes.service";
 import {HttpHelper} from "../helper/http.helper";
 import {HttpModule} from "@angular/http";
-import { HeroDetailComponent } from './pages/hero-detail/hero-detail.component';
 import {AppRoutingModule} from "../routes/app-routing.module";
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {AnimationComponent} from "./pages/animation/animation.component";
-import {AtModule} from "at-ng";
+import {LoginComponent} from "./pages/login/login.component";
+import {UserService} from "./services/operate/user.service";
+import {NgZorroAntdModule} from "ng-zorro-antd";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    DashboardComponent,
-    AnimationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +25,9 @@ import {AtModule} from "at-ng";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AtModule.forRoot()
+    NgZorroAntdModule
   ],
-  providers: [HeroesService, HttpHelper],
+  providers: [HttpHelper, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

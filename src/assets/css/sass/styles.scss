@@ -7,3 +7,78 @@
   background-attachment: fixed;
   background-image: url(http://atyun-api-sit.oss-cn-shanghai.aliyuncs.com/uploads/user_0/content/background/76512/bbdb525f-2e52-4a40-bc6b-66b37396e010.jpg)
 }
+
+.login-background{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://uploads-global.eqding.com/uploads/user_0/image/file/15842/3283d1be-5fea-4caf-a054-4b1eaaa0f2a5.jpg)
+}
+
+.login-content{
+  margin: 200px auto;
+  min-height: 260px;
+  width: 400px;
+  padding: 20px 30px 48px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.login-portrait{
+  width: 80px;
+  border-radius: 50%;
+  position: absolute;
+  top: -40px;
+  left: 40%;
+}
+
+.login-input {
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  display: block;
+  margin: 0 auto;
+  padding-left: 20px;
+}
+
+.username{
+  margin-top: 60px;
+}
+
+.password{
+  margin-top: 40px;
+}
+
+.login-button{
+  margin-top: 30px;
+  text-align: center;
+  button {
+    width: 70px;
+    height: 25px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #50a3f6;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+}
+
+.nav_link{
+  margin-left: 20px;
+  display: inline-block;
+  float: left;
+  img{
+    margin-left: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+.nav_bar{
+  height: 42px;
+  line-height: 42px;
+  padding-right: 20px;
+  text-align: right;
+}

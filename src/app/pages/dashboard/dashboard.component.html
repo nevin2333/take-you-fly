@@ -1,26 +1,56 @@
-<h1 class="animated infinite bounce delay-2s ">Animate.css</h1>
+<div class="nav_bar">
 
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4 test-a" routerLink="/detail/{{hero.id}}">
-    <div class="module">
-      <h4 class="item-test">{{hero.name}}</h4>
-    </div>
-  </a>
+  <div class="nav_link">
+    <a (click)="logOut()">退出</a>
+    <img src="https://uploads-global.eqding.com/uploads/user_0/image/file/16240/5fbf0a1d-0da8-4557-aa9c-c9c145026a20.jpg">
+  </div>
+  <nz-breadcrumb style="display: inline-block;">
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/shop">我的商店</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/brand">品牌管理</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/product_label">标签管理</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/document">文档管理</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/product_category">商品分类管理</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/product">商品管理</a>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
 </div>
 
-<app-hero-detail [hero]="hero"></app-hero-detail>
-<!--<div class="block-hide"></div>-->
+<ul nz-menu [nzMode]="'inline'" style="width: 240px; height: 100%; position: fixed; top: 42px;">
+  <li nz-menu-item routerLink="/dashboard/product">
+    <span title><i nz-icon type="mail"></i> 添加商品 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/shop">
+    <span title><i nz-icon type="mail"></i> 我的商店 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/brand">
+    <span title><i nz-icon type="mail"></i> 品牌管理 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/product_label">
+    <span title><i nz-icon type="mail"></i> 标签管理 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/document">
+    <span title><i nz-icon type="mail"></i> 文档管理 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/product_category">
+    <span title><i nz-icon type="mail"></i> 商品分类管理 </span>
+  </li>
+  <li nz-menu-item routerLink="/dashboard/product">
+    <span title><i nz-icon type="mail"></i> 商品管理 </span>
+  </li>
+</ul>
 
-<!--<div class="test-back-img">-->
-  <!--asdasdasdasd-->
-<!--</div>-->
+<div style="margin-left: 239px;">
+  <router-outlet></router-outlet>
+</div>
 
-<atModal [show]="asd">
-  <div header>
-    asasd
-  </div>
-  <div body>
-    asddsa
-  </div>
-</atModal>
