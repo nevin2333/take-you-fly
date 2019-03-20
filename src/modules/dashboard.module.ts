@@ -18,6 +18,11 @@ import {BrandsService} from "../app/services/operate/brands.service";
 import {GlobalService} from "../app/services/global.service";
 import {CommonModule} from "@angular/common";
 import {ShopService} from "../app/services/operate/shop.service";
+import {ProductLabelService} from "../app/services/operate/product-label.service";
+import {DocumentService} from "../app/services/operate/document.service";
+import {ProductService} from "../app/services/operate/product.service";
+import {ProductCategoryService} from "../app/services/operate/product-category.service";
+import {httpInterceptorProviders} from "../app/app.module";
 
 @NgModule({
   declarations: [
@@ -37,6 +42,9 @@ import {ShopService} from "../app/services/operate/shop.service";
     DashboardRoute,
     NgZorroAntdModule
   ],
-  providers: [HttpHelper, CmsAccountInterceptor, DataHelper, BrandsService, GlobalService, ShopService]
+  providers: [HttpHelper, httpInterceptorProviders, CmsAccountInterceptor, DataHelper, BrandsService,
+    GlobalService, ShopService, ProductLabelService,
+    DocumentService, ProductService, ProductCategoryService
+  ]
 })
 export class DashboardModule { }

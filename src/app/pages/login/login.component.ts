@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       if (data && data.status && data.status.code === '50000') {
         this.message.create('error', data.status.message[0])
       } else {
-        localStorage.setItem('user_session_key', data.data.user.user_session_key);
-        localStorage.setItem('user', JSON.stringify(data.data.user));
+        localStorage.setItem('user_session_key', data.user.user_session_key);
+        localStorage.setItem('user', JSON.stringify(data.user));
         this.router.navigate(['/dashboard']);
       }
 

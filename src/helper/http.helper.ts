@@ -97,4 +97,63 @@ export class HttpHelper {
     return this.http_client.post<any>(url, body, options);
   }
 
+  public AUTH_HTTP_UPLOAD_PUT(url: string, body: Object, prefix = 'update', headers = new HttpHeaders()) {
+    const token = JSON.parse(isPlatformBrowser(this.platformId) ? localStorage.getItem('access_token') : this.access_token) || null;
+    // headers.append('Content-Type', 'multipart/form-data');
+    headers.set('Accept', 'application/json');
+    headers.set('encrypt', 'multipart/form-data');
+    const options = {headers};
+    const formData: FormData = this.objectToFormData(body, new FormData());
+    return this.http_client.put<any>(url, formData, options);
+  }
+
+  public AUTH_HTTP_UPLOAD_POST(url: string, body: Object, prefix = 'update', headers = new HttpHeaders()) {
+    const token = JSON.parse(isPlatformBrowser(this.platformId) ? localStorage.getItem('access_token') : this.access_token) || null;
+    // headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    const options = {headers};
+    const formData: FormData = this.objectToFormData(body, new FormData());
+    return this.http_client.post<any>(url, formData, options);
+  }
+
+  // 将对象或数组转换成formdata的格式
+  objectToFormData(obj: any, form: FormData, namespace = '') {
+    const fd = form || new FormData();
+    let formKey;
+    if (obj instanceof Array) {
+      for (const item of obj) {
+        if (typeof item === 'object' && !(item instanceof File)) {
+          this.objectToFormData(item, fd, `${namespace}[]`);
+        } else {
+          fd.append(`${namespace}[]`, item);
+        }
+      }
+    } else {
+      for (const property in obj) {
+        if (obj.hasOwnProperty(property)) {
+
+          if (namespace) {
+            formKey = namespace + '[' + property + ']';
+          } else {
+            formKey = property;
+          }
+
+          // if the property is an object, but not a File,
+          // use recursivity.
+          if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+
+            this.objectToFormData(obj[property], fd, formKey);
+          } else {
+
+            // if it's a string or a File object
+            fd.append(formKey, obj[property]);
+          }
+
+        }
+      }
+    }
+    return fd;
+
+  }
+
 }

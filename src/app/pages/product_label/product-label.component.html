@@ -1,1 +1,29 @@
 ProductLabel
+
+<nz-table #basicTable [nzData]="product_labels">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>English Name</th>
+    <th>Status</th>
+    <th>Create Time</th>
+    <th>Option</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{data.name}}</td>
+    <td>{{data.name_en}}</td>
+    <td>{{data.status}}</td>
+    <td>{{data.created_at}}</td>
+    <td>
+      <a>Action 一 {{data.name}}</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+

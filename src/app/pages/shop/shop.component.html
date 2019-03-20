@@ -1,1 +1,160 @@
-我的商店
+
+<div>
+  Shop
+</div>
+
+<button nz-button nzType="primary" (click)="open()">New Shop</button>
+
+<nz-table [nzData]="shops">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Status</th>
+    <th>phone</th>
+    <th>logo</th>
+    <th>QQ number</th>
+    <th>Language</th>
+    <th>Create Time</th>
+    <th>Option</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of shops, let i = index">
+    <td>{{data.name}}</td>
+    <td>{{data.description}}</td>
+    <td>{{data.status}}</td>
+    <td>{{data.phone}}</td>
+    <td>{{data.logo}}</td>
+    <td>{{data.qq_number}}</td>
+    <td>{{data.language.name_en}}</td>
+    <td>{{data.created_at}}</td>
+    <td>
+      <a (click)="update(i)">Update</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a nz-popconfirm nzTitle="Are you sure delete this data?" (nzOnConfirm)="remove(i)" nzPlacement="top">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+           [nzMaskClosable]="false" [nzWidth]="720"
+           [nzVisible]="visible" nzTitle="{{option}}"
+           (nzOnClose)="close()">
+  <form nz-form>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter shop name" [(ngModel)]="shop.name" name="name">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Phone</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter phone number" [(ngModel)]="shop.phone" name="phone">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Logo</nz-form-label>
+          <nz-form-control>
+            <nz-upload
+              nzAction="https://atyun-api-sit.oss-cn-shanghai.aliyuncs.com/uploads/shop/attachment/file/">
+              <button nz-button>
+                <i nz-icon type="upload"></i><span>Click to Upload</span>
+              </button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Status</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Status" [(ngModel)]="shop.status" name="status">
+              <nz-option nzValue="active" nzLabel="active"></nz-option>
+              <nz-option nzValue="inactive" nzLabel="inactive"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>State</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the State" [(ngModel)]="shop.state_id" name="state">
+              <nz-option nzValue="Asia" nzLabel="Asia"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Country</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Country" [(ngModel)]="shop.country_id" name="country">
+              <nz-option nzValue="China" nzLabel="China"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Province</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Province" [(ngModel)]="shop.province_id" name="province">
+              <nz-option nzValue="Henan" nzLabel="Henan"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>City</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the City" [(ngModel)]="shop.city_id" name="city">
+              <nz-option nzValue="Zhengzhou" nzLabel="Zhengzhou"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Language {{shop.system_language_id}}</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Language" [(ngModel)]="shop.system_language_id" name="language">
+              <nz-option *ngFor="let item of system_languages" nzValue="{{item.id}}" nzLabel="{{item.name_en}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>QQ number</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter QQ number" [(ngModel)]="shop.qq_number" name="qq_number">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+  </form>
+  <div class="shop-create-footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
+    <button type="button" (click)="submit()" class="ant-btn ant-btn-primary"><span>Submit</span></button>
+  </div>
+</nz-drawer>

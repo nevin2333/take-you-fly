@@ -97,3 +97,15 @@
   padding-right: 20px;
   text-align: right;
 }
+
+/* line 86, assets/css/sass/styles.scss */
+.shop-create-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e8e8e8;
+  padding: 10px 16px;
+  text-align: right;
+  left: 0;
+  background: #fff;
+}

@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut(): void {
-    localStorage.setItem('user_sessin_key', '')
+    localStorage.setItem('user_session_key', '')
     localStorage.setItem('user', '')
     this.route.navigate(['/login'])
   }
