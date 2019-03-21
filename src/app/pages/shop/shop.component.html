@@ -1,18 +1,13 @@
-
-<div>
-  Shop
-</div>
-
 <button nz-button nzType="primary" (click)="open()">New Shop</button>
 
 <nz-table [nzData]="shops">
   <thead>
   <tr>
+    <th>logo</th>
     <th>Name</th>
     <th>Location</th>
     <th>Status</th>
     <th>phone</th>
-    <th>logo</th>
     <th>QQ number</th>
     <th>Language</th>
     <th>Create Time</th>
@@ -21,13 +16,13 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of shops, let i = index">
+    <td><img style="width: 40px" src="{{data.logo}}"></td>
     <td>{{data.name}}</td>
     <td>{{data.description}}</td>
     <td>{{data.status}}</td>
     <td>{{data.phone}}</td>
-    <td>{{data.logo}}</td>
     <td>{{data.qq_number}}</td>
-    <td>{{data.language.name_en}}</td>
+    <td>{{data.language?.name_en}}</td>
     <td>{{data.created_at}}</td>
     <td>
       <a (click)="update(i)">Update</a>
@@ -66,12 +61,19 @@
         <nz-form-item>
           <nz-form-label>Logo</nz-form-label>
           <nz-form-control>
-            <nz-upload
-              nzAction="https://atyun-api-sit.oss-cn-shanghai.aliyuncs.com/uploads/shop/attachment/file/">
+            <!--<nz-upload-->
+              <!--nzAction="/api/images/upload/">-->
+              <!--<button nz-button>-->
+                <!--<i nz-icon type="upload"></i><span>Click to Upload</span>-->
+              <!--</button>-->
+            <!--</nz-upload>-->
+
+            <at-upload [atType]="'picture'" [(ngModel)]="shop.logo" [multiple]="false" name="logo">
               <button nz-button>
                 <i nz-icon type="upload"></i><span>Click to Upload</span>
               </button>
-            </nz-upload>
+            </at-upload>
+
           </nz-form-control>
         </nz-form-item>
       </div>

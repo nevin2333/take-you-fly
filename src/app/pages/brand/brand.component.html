@@ -1,26 +1,109 @@
-<nz-table #basicTable [nzData]="brands">
+<button nz-button nzType="primary" (click)="open()">New Brand</button>
+
+<nz-table [nzData]="brands">
   <thead>
   <tr>
+    <th>logo</th>
     <th>Name</th>
     <th>Description</th>
     <th>link</th>
-    <th>logo</th>
     <th>Update Time</th>
     <th>Option</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data">
+  <tr *ngFor="let data of brands, let i = index">
+    <td><img style="width: 40px" src="{{data.logo}}"></td>
     <td>{{data.name}}</td>
     <td>{{data.description}}</td>
     <td>{{data.link}}</td>
-    <td>{{data.logo}}</td>
     <td>{{data.updated_at}}</td>
     <td>
-      <a>Action 一 {{data.name}}</a>
+      <a (click)="update(i)">Update</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a>Delete</a>
+      <a nz-popconfirm nzTitle="Are you sure delete this data?" (nzOnConfirm)="remove(i)" nzPlacement="top">Delete</a>
     </td>
   </tr>
   </tbody>
 </nz-table>
+
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+           [nzMaskClosable]="false" [nzWidth]="720"
+           [nzVisible]="visible" nzTitle="{{option}}"
+           (nzOnClose)="close()">
+  <form nz-form>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter brand's name" [(ngModel)]="brand.name" name="name">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>English Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter brand's english name" [(ngModel)]="brand.name_en" name="english_name">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Logo</nz-form-label>
+          <nz-form-control>
+            <!--<nz-upload-->
+            <!--nzAction="/api/images/upload/">-->
+            <!--<button nz-button>-->
+            <!--<i nz-icon type="upload"></i><span>Click to Upload</span>-->
+            <!--</button>-->
+            <!--</nz-upload>-->
+
+            <at-upload [atType]="'picture'" [(ngModel)]="brand.logo" [multiple]="false" name="logo">
+              <button nz-button>
+                <i nz-icon type="upload"></i><span>Click to Upload</span>
+              </button>
+            </at-upload>
+
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Status</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Status" [(ngModel)]="brand.status" name="status">
+              <nz-option nzValue="active" nzLabel="active"></nz-option>
+              <nz-option nzValue="inactive" nzLabel="inactive"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Description</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="Short description" [(ngModel)]="brand.description" name="description">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Link</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="Please input the brand's link" [(ngModel)]="brand.link" name="link">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div class="shop-create-footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
+    <button type="button" (click)="submit()" class="ant-btn ant-btn-primary"><span>Submit</span></button>
+  </div>
+</nz-drawer>

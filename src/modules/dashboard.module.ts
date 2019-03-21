@@ -23,6 +23,7 @@ import {DocumentService} from "../app/services/operate/document.service";
 import {ProductService} from "../app/services/operate/product.service";
 import {ProductCategoryService} from "../app/services/operate/product-category.service";
 import {httpInterceptorProviders} from "../app/app.module";
+import {AtUploadModule} from "../app/upload";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {httpInterceptorProviders} from "../app/app.module";
     HttpModule,
     HttpClientModule,
     DashboardRoute,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    AtUploadModule
   ],
   providers: [HttpHelper, httpInterceptorProviders, CmsAccountInterceptor, DataHelper, BrandsService,
     GlobalService, ShopService, ProductLabelService,

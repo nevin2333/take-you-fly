@@ -1,6 +1,6 @@
-ProductLabel
+<button nz-button nzType="primary" (click)="open()">New Product Label</button>
 
-<nz-table #basicTable [nzData]="product_labels">
+<nz-table [nzData]="product_labels">
   <thead>
   <tr>
     <th>Name</th>
@@ -11,19 +11,62 @@ ProductLabel
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data">
+  <tr *ngFor="let data of product_labels, let i = index">
     <td>{{data.name}}</td>
     <td>{{data.name_en}}</td>
     <td>{{data.status}}</td>
     <td>{{data.created_at}}</td>
     <td>
-      <a>Action 一 {{data.name}}</a>
+      <a (click)="update(i)">Update</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a>Delete</a>
+      <a nz-popconfirm nzTitle="Are you sure delete this data?" (nzOnConfirm)="remove(i)" nzPlacement="top">Delete</a>
     </td>
   </tr>
   </tbody>
 </nz-table>
+
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+           [nzMaskClosable]="false" [nzWidth]="720"
+           [nzVisible]="visible" nzTitle="{{option}}"
+           (nzOnClose)="close()">
+  <form nz-form>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter product_label's name" [(ngModel)]="product_label.name" name="name">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>English Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="please enter product_label's english name" [(ngModel)]="product_label.name_en" name="english_name">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Status</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Please choose the Status" [(ngModel)]="product_label.status" name="status">
+              <nz-option nzValue="active" nzLabel="active"></nz-option>
+              <nz-option nzValue="inactive" nzLabel="inactive"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div class="shop-create-footer">
+    <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
+    <button type="button" (click)="submit()" class="ant-btn ant-btn-primary"><span>Submit</span></button>
+  </div>
+</nz-drawer>
 
 
 
