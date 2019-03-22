@@ -24,6 +24,8 @@ import {ProductService} from "../app/services/operate/product.service";
 import {ProductCategoryService} from "../app/services/operate/product-category.service";
 import {httpInterceptorProviders} from "../app/app.module";
 import {AtUploadModule} from "../app/upload";
+import {ProductAttributeService} from "../app/services/operate/product-attribute.service";
+import {ProductAttributeValueService} from "../app/services/operate/product-attribute-value.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import {AtUploadModule} from "../app/upload";
   ],
   providers: [HttpHelper, httpInterceptorProviders, CmsAccountInterceptor, DataHelper, BrandsService,
     GlobalService, ShopService, ProductLabelService,
-    DocumentService, ProductService, ProductCategoryService
+    DocumentService, ProductService, ProductCategoryService, ProductAttributeService, ProductAttributeValueService
   ]
 })
 export class DashboardModule { }

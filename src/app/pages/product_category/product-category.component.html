@@ -1,19 +1,34 @@
 <div *ngFor="let product_categories of product_category_levels, let level = index" class="category-list">
-  <h2>Level <i (click)="open(level)" nz-icon type="plus-circle" theme="outline"></i></h2>
-  <div *ngFor="let item of product_categories, let i = index">
-    <span style="cursor: pointer;" (click)="loadChildren(level, i)">{{item.name}}</span>
-    <a (click)="edit(level, i)">
-      <i nz-icon type="edit" theme="outline"></i>
+  <h2 style="position: relative; margin-top: 12px;">
+    {{pid_names[level] || 'First Level'}}
+    <a class="category-create">
+      <i (click)="openCreate(level)" nz-icon type="copy" theme="outline"></i>
     </a>
-    <nz-divider nzType="vertical"></nz-divider>
-    <a nz-popconfirm nzTitle="Are you sure delete this data?" (nzOnConfirm)="remove(level, i)" nzPlacement="top"><i nz-icon type="delete" theme="outline"></i></a>
+  </h2>
+  <div class="category-item" *ngFor="let item of product_categories, let i = index">
+    <span class="category-name" (click)="loadChildren(level, i)">{{item.name}}</span>
+
+    <div class="category-option">
+      <a (click)="edit(level, i)">
+        <i nz-icon type="edit" theme="outline"></i>
+      </a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a nz-popconfirm nzTitle="Are you sure delete this data?"
+         nzPlacement="top"
+         (nzOnConfirm)="remove(level, i)">
+        <i nz-icon type="delete" theme="outline"></i>
+      </a>
+    </div>
+
   </div>
 </div>
 
 <nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
-           [nzMaskClosable]="false" [nzWidth]="720"
+           [nzMaskClosable]="true" [nzWidth]="720"
            [nzVisible]="visible" nzTitle="{{option}}"
-           (nzOnClose)="close()">
+           (nzOnClose)="close()"
+           [nzOffsetX]="childrenVisible ? 180 : 0"
+>
   <form nz-form>
     <div nz-row nzGutter="8">
       <div nz-col nzSpan="12">
@@ -82,8 +97,109 @@
       </div>
     </div>
   </form>
+
   <div class="shop-create-footer">
     <button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>
     <button type="button" (click)="submit()" class="ant-btn ant-btn-primary"><span>Submit</span></button>
   </div>
+
+  <div class="product-attribute-title">
+    Product Attributes
+  </div>
+
+  <div style="margin: 30px 0;">
+    <nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton">
+      <input type="text" nz-input placeholder="input new product attribute's name" [(ngModel)]="product_attribute_name" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="default" nzSearch (click)="addProductAttribute()">Create</button>
+    </ng-template>
+  </div>
+
+  <div>
+    <button *ngFor="let item of product_category.product_attributes, let j = index"
+            nz-button (click)="openChildren(j)" style="margin-right: 30px;">
+      {{item.name}}
+    </button>
+  </div>
+
+  <nz-drawer [nzClosable]="false" [nzVisible]="childrenVisible"
+             nzTitle="Product Attribute Details"
+             (nzOnClose)="closeChildren()"
+             [nzWidth]="400"
+  >
+    <form nz-form>
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product attribute's name"
+                     [(ngModel)]="product_attribute.name" name="attribute_name">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>English Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product attribute's english name"
+                     [(ngModel)]="product_attribute.name_en" name="attribute_name_en"
+              >
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>Details</nz-form-label>
+            <nz-form-control>
+              <label nz-checkbox [(ngModel)]="product_attribute.is_sku" name="is_sku" >is SKU Attribute</label>
+              <label nz-checkbox [(ngModel)]="product_attribute.required" name="is_required" >is Required</label>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+
+    <button type="button" (click)="updateProductAttribute()" class="ant-btn ant-btn-primary"><span>Submit</span></button>
+
+    <a nz-popconfirm nzTitle="Are you sure delete this data?"
+       nzPlacement="top"
+       (nzOnConfirm)="removeProductAttribute()">
+      <button style="margin-left: 20px;" nz-button nzType="danger"><span>Remove</span></button>
+    </a>
+
+    <div class="product-attribute-title">
+      Product Attribute Values
+    </div>
+
+    <div style="margin: 30px 0;">
+      <nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton2">
+        <input type="text" nz-input placeholder="input new product attribute value's name" [(ngModel)]="product_attribute_value_name" />
+      </nz-input-group>
+      <ng-template #suffixButton2>
+        <button (click)="addProductAttributeValue()" nz-button nzType="primary" nzSize="default" nzSearch>Create</button>
+      </ng-template>
+    </div>
+
+    <div>
+      <a nz-popconfirm nzTitle="Are you sure delete this data?"
+         nzPlacement="right"
+         *ngFor="let item of product_attribute.product_attribute_values, let k = index"
+         (nzOnConfirm)="removeAttributeValue(k, item.id)">
+        <button style="margin-right: 20px;" nz-button>
+          {{item.name}}
+          <i nz-icon type="delete" theme="outline"></i>
+        </button>
+      </a>
+    </div>
+
+  </nz-drawer>
+
 </nz-drawer>

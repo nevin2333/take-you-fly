@@ -1,3 +1,5 @@
+import {ProductAttribute} from "./product-attribute";
+
 export class ProductCategory {
   id: number
   name: string
@@ -13,6 +15,7 @@ export class ProductCategory {
   user_id: number
   created_at: string
   updated_at: string
+  product_attributes: ProductAttribute[]
 
   constructor() {
     this.status = 'active'

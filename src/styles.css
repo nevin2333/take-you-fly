@@ -100,17 +100,13 @@
 
 /* line 86, assets/css/sass/styles.scss */
 .shop-create-footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  border-top: 1px solid #e8e8e8;
   padding: 10px 16px;
   text-align: right;
-  left: 0;
   background: #fff;
 }
 
-/* line 99, assets/css/sass/styles.scss */
+/* line 95, assets/css/sass/styles.scss */
 .at-upload-files-avatar-actions {
   position: absolute;
   left: 50%;
@@ -123,12 +119,12 @@
   -webkit-transition: all .3s;
   transition: all .3s;
 }
-/* line 110, assets/css/sass/styles.scss */
+/* line 106, assets/css/sass/styles.scss */
 .at-upload-files-avatar-actions a {
   color: white;
   padding: 4px;
 }
-/* line 116, assets/css/sass/styles.scss */
+/* line 112, assets/css/sass/styles.scss */
 .at-upload-files-avatar-item {
   border: 1px solid #ececec;
   border-radius: 4px;
@@ -139,13 +135,13 @@
   padding: 8px;
   position: relative;
 }
-/* line 126, assets/css/sass/styles.scss */
+/* line 122, assets/css/sass/styles.scss */
 .at-upload-files-avatar-item-info {
   position: relative;
   height: 100%;
   width: 100%;
 }
-/* line 127, assets/css/sass/styles.scss */
+/* line 123, assets/css/sass/styles.scss */
 .at-upload-files-avatar-item-info:before {
   content: ' ';
   position: absolute;
@@ -157,15 +153,53 @@
   height: 100%;
   opacity: 0;
 }
-/* line 142, assets/css/sass/styles.scss */
+/* line 138, assets/css/sass/styles.scss */
 .at-upload-files-avatar-preview {
   width: 100%;
   height: 100%;
 }
 
-/* line 148, assets/css/sass/styles.scss */
+/* line 144, assets/css/sass/styles.scss */
 .category-list {
+  margin: 20px;
   vertical-align: top;
   display: inline-block;
-  width: 200px;
+  width: 250px;
+  border: 1px solid #ececec;
+}
+/* line 150, assets/css/sass/styles.scss */
+.category-list h2 {
+  text-align: center;
+}
+/* line 153, assets/css/sass/styles.scss */
+.category-list .category-option {
+  display: inline-block;
+  float: right;
+  margin-right: 20px;
+}
+/* line 158, assets/css/sass/styles.scss */
+.category-list .category-name {
+  cursor: pointer;
+  margin-left: 5%;
+}
+/* line 162, assets/css/sass/styles.scss */
+.category-list .category-item {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  border-top: 1px solid #ececec;
+}
+/* line 168, assets/css/sass/styles.scss */
+.category-list .category-create {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+/* line 175, assets/css/sass/styles.scss */
+.product-attribute-title {
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #ececec;
 }
