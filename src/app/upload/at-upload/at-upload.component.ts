@@ -1,49 +1,9 @@
-import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'at-upload',
-  template: `
-
-    <div *ngIf="atType == 'picture'" class="at-upload-files-avatar">
-      <div at-upload-list class="at-upload-files-avatar-item" *ngFor="let item of _files;let i = index">
-        <div class="at-upload-files-avatar-item-info">
-          <img class="at-upload-files-avatar-preview" image-preview [image]="item">
-        </div>
-        <span class="at-upload-files-avatar-actions">
-            <a (click)="previewImage(i)"><i class="icon icon-eye"></i></a>
-          <a (click)="removeFile(i)"><i class="icon icon-trash-2"></i></a>
-        </span>
-
-      </div>
-    </div>
-
-    <div class="at-upload at-upload--{{atType}}">
-      <div class="at-upload-container " at-drag-upload (uploadFile)="dragFile($event)"
-           (click)="triggerUpload()">
-        <ng-content></ng-content>
-      </div>
-      <input #file_input type="file" [multiple]="multiple" (change)="fileChange($event)"
-             style="display: none">
-    </div>
-
-    <div *ngIf="atType == 'text'" class="at-upload-files">
-      <div at-upload-list class="at-upload-files-item" *ngFor="let item of _files;let i = index">
-        <div class="at-upload-files-item-info">
-            <span><i class="icon icon-file icon-left"></i><a
-              class="at-upload-files-item-file-name">{{item.name}}</a></span>
-        </div>
-        <i (click)="removeFile(i)" class="icon icon-x icon-right"></i>
-      </div>
-    </div>
-
-    <!--<at-modal [showFooter]="false" [showHeader]="false" [show]="preview" (onOk)="preview = false"-->
-    <!--(onCancel)="preview=false">-->
-    <!--<div body class="at-upload-preview-modal">-->
-    <!--<img style="max-width: 100%;max-height: 100%" image-preview [image]="preview_image"/>-->
-    <!--</div>-->
-    <!--</at-modal>-->
-  `,
+  templateUrl: './at-upload.component.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => AtUploadComponent),
@@ -60,6 +20,8 @@ export class AtUploadComponent implements OnInit {
   @Input() multiple = true;
 
   @Input() atType = 'text';
+
+  @Output() readonly after_remove: EventEmitter<number> = new EventEmitter();
 
   preview = false;
 
@@ -100,6 +62,7 @@ export class AtUploadComponent implements OnInit {
 
   removeFile(index: number) {
     this._files.splice(index, 1);
+    this.after_remove.emit(index)
   }
 
   dragFile(files: any) {

@@ -1,0 +1,41 @@
+<div *ngIf="atType == 'picture'" class="at-upload-files-avatar">
+  <div at-upload-list class="at-upload-files-avatar-item" *ngFor="let item of _files;let i = index">
+    <div class="at-upload-files-avatar-item-info">
+      <img class="at-upload-files-avatar-preview" image-preview [image]="item">
+    </div>
+    <span class="at-upload-files-avatar-actions">
+      <a (click)="previewImage(i)">
+        <svg t="1553568616693" class="icon" style="width: 15px; height: 15px;" viewBox="0 0 1363 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6811" xmlns:xlink="http://www.w3.org/1999/xlink" width="266.2109375" height="200"><defs><style type="text/css"></style></defs><path d="M678.895028 1024c-424.309392 0-661.922652-463.911602-673.237569-486.541436-5.657459-16.972376-5.657459-33.944751 0-50.917128 11.314917-16.972376 248.928177-486.541436 673.237569-486.541436s661.922652 463.911602 673.237569 486.541436c5.657459 16.972376 5.657459 33.944751 0 50.917128-11.314917 22.629834-248.928177 486.541436-673.237569 486.541436z m-560.088398-509.171271c50.917127 90.519337 254.585635 396.022099 560.088398 396.0221s503.513812-305.502762 560.088397-396.0221c-50.917127-90.519337-254.585635-396.022099-560.088397-396.022099s-503.513812 305.502762-560.088398 396.022099z" p-id="6812" fill="#ffffff"></path><path d="M678.895028 741.127072c-124.464088 0-226.298343-101.834254-226.298343-226.298343s101.834254-226.298343 226.298343-226.298342 226.298343 101.834254 226.298342 226.298342-101.834254 226.298343-226.298342 226.298343z m0-339.447514c-62.232044 0-113.149171 50.917127-113.149172 113.149171s50.917127 113.149171 113.149172 113.149172 113.149171-50.917127 113.149171-113.149172-50.917127-113.149171-113.149171-113.149171z" p-id="6813" fill="#ffffff"></path></svg>
+      </a>
+      <a nz-popconfirm nzTitle="Are you sure delete this image?" (nzOnConfirm)="removeFile(i)" nzPlacement="top">
+        <svg t="1553568819563" class="icon" style="width: 15px; height: 15px;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7570" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M804.414 123.434h-156.903c-7.827-67.871-65.572-120.767-135.51-120.767-69.935 0-127.672 52.893-135.499 120.767h-156.911c-63.498 0-115.15 51.667-115.15 115.163v5.909c0 48.523 30.213 90.055 72.775 106.977v544.022c0 63.498 51.659 115.163 115.152 115.163h439.272c63.495 0 115.15-51.67 115.15-115.163v-544.02c42.559-16.924 72.775-58.456 72.775-106.977v-5.909c0-63.498-51.657-115.165-115.15-115.165zM512 57.282c39.777 0 72.978 28.51 80.324 66.151h-160.633c7.344-37.643 40.547-66.151 80.309-66.151zM792.174 895.504c0 33.385-27.163 60.55-60.537 60.55h-439.272c-33.374 0-60.537-27.167-60.537-60.55v-535.836h560.347v535.836zM864.948 244.505c0 33.385-27.163 60.55-60.537 60.55h-584.822c-33.374 0-60.537-27.165-60.537-60.55v-5.909c0-33.385 27.163-60.55 60.537-60.55h584.824c33.374 0 60.537 27.165 60.537 60.55v5.909zM365.594 886.209c15.082 0 27.307-12.23 27.307-27.305v-307.468c0-15.078-12.227-27.309-27.307-27.309s-27.307 12.232-27.307 27.309v307.468c-0.002 15.08 12.225 27.305 27.307 27.305zM512 886.209c15.082 0 27.309-12.23 27.309-27.305v-307.468c0-15.078-12.232-27.309-27.309-27.309-15.08 0-27.307 12.232-27.307 27.309v307.468c0 15.08 12.225 27.305 27.307 27.305zM658.406 886.209c15.08 0 27.305-12.23 27.305-27.305v-307.468c0-15.078-12.227-27.309-27.305-27.309-15.084 0-27.309 12.232-27.309 27.309v307.468c-0.002 15.08 12.23 27.305 27.309 27.305z" fill="#ffffff" p-id="7571"></path></svg>
+      </a>
+    </span>
+  </div>
+</div>
+
+<div class="at-upload at-upload--{{atType}}">
+  <div class="at-upload-container " at-drag-upload (uploadFile)="dragFile($event)"
+       (click)="triggerUpload()">
+    <ng-content></ng-content>
+  </div>
+  <input #file_input type="file" [multiple]="multiple" (change)="fileChange($event)"
+         style="display: none">
+</div>
+
+<div *ngIf="atType == 'text'" class="at-upload-files">
+  <div at-upload-list class="at-upload-files-item" *ngFor="let item of _files;let i = index">
+    <div class="at-upload-files-item-info">
+            <span><i class="icon icon-file icon-left"></i><a
+              class="at-upload-files-item-file-name">{{item.name}}</a></span>
+    </div>
+    <i (click)="removeFile(i)" class="icon icon-x icon-right"></i>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="preview" [nzFooter]="null"
+          (nzOnCancel)="preview = false" (nzOnOk)="preview = false"
+          [nzWidth]="520"
+>
+  <img style="width: 100%" src="{{preview_image}}">
+</nz-modal>

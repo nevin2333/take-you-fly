@@ -17,4 +17,9 @@ export class GlobalService {
     return this.http.AUTH_HTTP_GET('api/system_languages.json', search_params)
   }
 
+  public deleteImage(id: string): Observable<any> {
+    const params = {shop_id: id};
+    return this.http.AUTH_HTTP_DELETE('api/images/' + id + '.json', params);
+  }
+
 }

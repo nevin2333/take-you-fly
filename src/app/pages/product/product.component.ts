@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../services/global.service";
 import {ProductService} from "../../services/operate/product.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,8 @@ export class ProductComponent implements OnInit {
   total_count
 
   constructor(private product_service: ProductService,
-              private global_service: GlobalService
+              private global_service: GlobalService,
+              private route: Router
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,20 @@ export class ProductComponent implements OnInit {
         this.total_count = data.total_count
       }
     })
+  }
+
+  newProduct() {
+    this.route.navigate(['/dashboard/product_edit'])
+  }
+
+  removeProduct(i: number): void {
+    this.product_service.delete(this.products[i].id).subscribe(data => {
+      this.products.splice(i, 1)
+    })
+  }
+
+  editProduct(id: number): void {
+    this.route.navigate(['/dashboard/product_edit'], {queryParams: {id: id}})
   }
 
 }

@@ -75,6 +75,8 @@ export class ProductCategoryComponent implements OnInit {
 
   close(): void {
     this.product_category = new ProductCategory();
+    this.product_attribute_value_name = ''
+    this.product_attribute_name = ''
     this.visible = false;
   }
 
@@ -97,7 +99,8 @@ export class ProductCategoryComponent implements OnInit {
   updateData(): void {
     let update_params = {
       update: {
-        ...this.product_category
+        ...this.product_category,
+        path: this.pids.slice(0, this.edit_level).join(',')
       }
     }
     this.product_category_service.update(this.product_category.id, update_params).subscribe(data => {
@@ -121,8 +124,9 @@ export class ProductCategoryComponent implements OnInit {
         level: this.edit_level,
         pid: this.pids[this.edit_level - 1],
         ...this.product_category,
-        user_id: this.global_service.$current_user.id
-      }
+        user_id: this.global_service.$current_user.id,
+        path: this.pids.slice(0, this.edit_level).join(',')
+      },
     }
     this.product_category_service.create(create_params).subscribe(data => {
       if (data) {
@@ -148,6 +152,7 @@ export class ProductCategoryComponent implements OnInit {
 
   closeChildren(): void {
     this.childrenVisible = false;
+    this.product_attribute_name = ''
   }
 
   addProductAttribute(): void {
@@ -170,6 +175,7 @@ export class ProductCategoryComponent implements OnInit {
       if (data) {
         this.product_category.product_attributes.push(data)
         this.product_category_levels[this.edit_level - 1][this.edit_index].product_attributes.push(data)
+        this.product_attribute_name = ''
       }
     })
   }
@@ -210,6 +216,7 @@ export class ProductCategoryComponent implements OnInit {
       this.product_attribute.product_attribute_values.push(data)
       this.product_category.product_attributes[this.edit_attribute_index].product_attribute_values.push(data)
       this.product_category_levels[this.edit_level - 1][this.edit_index].product_attributes[this.edit_attribute_index].product_attribute_values.push(data)
+      this.product_attribute_value_name = ''
     })
   }
 

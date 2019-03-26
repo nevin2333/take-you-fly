@@ -26,6 +26,7 @@ import {httpInterceptorProviders} from "../app/app.module";
 import {AtUploadModule} from "../app/upload";
 import {ProductAttributeService} from "../app/services/operate/product-attribute.service";
 import {ProductAttributeValueService} from "../app/services/operate/product-attribute-value.service";
+import {ProductEditComponent} from "../app/pages/product_edit/product-edit.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {ProductAttributeValueService} from "../app/services/operate/product-attr
     DocumentComponent,
     ProductComponent,
     ProductCategoryComponent,
-    ProductLabelComponent
+    ProductLabelComponent,
+    ProductEditComponent
   ],
   imports: [
     CommonModule,

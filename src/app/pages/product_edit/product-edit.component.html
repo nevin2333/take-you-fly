@@ -1,0 +1,218 @@
+<nz-steps [nzCurrent]="current">
+  <nz-step nzTitle="Category"></nz-step>
+  <nz-step nzTitle="Properties"></nz-step>
+  <nz-step nzTitle="SKU"></nz-step>
+</nz-steps>
+
+<div class="steps-content">
+  <ng-container *ngIf="current == 0">
+    <h2>
+      请选择商品分类
+    </h2>
+    <form nz-form>
+      <nz-form-item *ngFor="let product_categories of product_category_levels, let i = index">
+        <ng-container *ngIf="product_categories">
+          <nz-form-label [nzSm]="6" [nzXs]="14">level {{i + 1}}</nz-form-label>
+          <nz-form-control [nzSm]="6" [nzXs]="14">
+            <nz-select nzPlaceHolder="Please choose the Status" nzAllowClear
+                       [(ngModel)]="level_results[i]" name="level{{i}}"
+                       (ngModelChange)="selectNextLevel(i)"
+            >
+              <nz-option *ngFor="let item of product_categories" nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </ng-container>
+      </nz-form-item>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="current == 1">
+    <h2>
+      请填写商品基本信息
+    </h2>
+    <form nz-form>
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product's name" [(ngModel)]="product.name" name="name">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>English Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product's english name" [(ngModel)]="product.name_en" name="english_name">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Link</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product's link" [(ngModel)]="product.link" name="link">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Art no</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter product's art no" [(ngModel)]="product.art_no" name="art_no">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Product Labels</nz-form-label>
+            <nz-form-control>
+              <nz-select nzPlaceHolder="Add product labels" nzAllowClear
+                         [(ngModel)]="product.product_label_ids"
+                         nzMode="multiple"
+                         name="product_label"
+              >
+                <nz-option *ngFor="let item of product_labels" nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Brands</nz-form-label>
+            <nz-form-control>
+              <nz-select nzPlaceHolder="Please choose the Brand" nzAllowClear
+                         [(ngModel)]="product.brand_id"
+                         name="brand"
+              >
+                <nz-option *ngFor="let item of brands" nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Shop</nz-form-label>
+            <nz-form-control>
+              <nz-select nzPlaceHolder="Please choose the Shop" nzAllowClear
+                         [(ngModel)]="product.shop_id"
+                         name="shop"
+              >
+                <nz-option *ngFor="let item of shops" nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label >Description</nz-form-label>
+            <nz-form-control >
+              <textarea nz-input rows="2" placeholder="write some description" [(ngModel)]="product.description" name="description"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzGutter="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label >Images</nz-form-label>
+            <nz-form-control>
+              <nz-upload
+                nzAction="api/images/upload.json"
+                nzListType="picture-card"
+                [nzData]="resource"
+                [(nzFileList)]="product.pictures"
+                [nzShowUploadList]="showUploadList"
+                [nzPreview]="handlePreview"
+                [nzMultiple]="true"
+                [nzRemove]="handleRemove"
+              >
+                <i nz-icon type="plus"></i>
+                <div class="ant-upload-text">Upload</div>
+              </nz-upload>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="current == 2">
+    <h2>
+      商品规格SKU
+    </h2>
+    <div>
+      商品分类——{{product_category.name}}
+    </div>
+
+    <form nz-form>
+      <div *ngFor="let sku_attribute of sku_attributes, let i = index">
+        <div nz-row nzGutter="8">
+          <div nz-col nzSpan="6">
+            <nz-form-item>
+              <nz-form-label>{{sku_attribute.name}}</nz-form-label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please choose the attribute" nzAllowClear
+                           [(ngModel)]="product_attribute_value_ids[i]" name="product_attribute_value"
+                >
+                  <nz-option *ngFor="let item of sku_attribute.product_attribute_values" nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col nzSpan="6">
+            <button style="margin: 43px 0 0 20px;" nz-button nzType="primary" (click)="addSKU(i)">
+              <span>Add</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button nz-button nzType="dafault" *ngFor="let item of product_sku_properties[i]">
+            {{item.value}}
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </ng-container>
+
+</div>
+
+<div class="steps-action">
+  <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+    <span>Previous</span>
+  </button>
+  <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+    <span>Next</span>
+  </button>
+  <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+    <span>Done</span>
+  </button>
+</div>
+
+<nz-modal
+  [nzVisible]="previewVisible"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false"
+>
+  <ng-template #modalContent>
+    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+  </ng-template>
+</nz-modal>

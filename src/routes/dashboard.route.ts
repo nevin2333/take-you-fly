@@ -8,6 +8,7 @@ import {DocumentComponent} from "../app/pages/document/document.component";
 import {ProductComponent} from "../app/pages/product/product.component";
 import {ProductCategoryComponent} from "../app/pages/product_category/product-category.component";
 import {ProductLabelComponent} from "../app/pages/product_label/product-label.component";
+import {ProductEditComponent} from "../app/pages/product_edit/product-edit.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'product', component: ProductComponent},
       { path: 'product_category', component: ProductCategoryComponent},
       { path: 'product_label', component: ProductLabelComponent},
+      { path: 'product_edit', component: ProductEditComponent}
     ]
   }
 ]
